@@ -72,7 +72,7 @@ class HeaderWithSearchBox extends StatelessWidget {
                       ),
                       enabledBorder: InputBorder.none,
                       focusedBorder: InputBorder.none,
-                      suffixIcon: SvgPicture.asset("assets/icon/search.svg"),
+                      suffixIcon: SvgPicture.asset("assets/icons/search.svg"),
                     ),
                   ),
                 ))

@@ -18,7 +18,7 @@ class Body extends StatelessWidget {
         children: <Widget>[
           HeaderWithSearchBox(size: size),
           TitleWithTextButton(title: "Views", button: "More", press: () {}),
-          ImageCardHorizontalView(),
+          TransactionImageHorizontalList(),
           TitleWithTextButton(
               title: "Recommended", button: "Add", press: () {}),
           ImageHorizontalViewWithoutText(),

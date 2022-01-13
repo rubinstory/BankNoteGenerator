@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_first_app/transaction/transaction.dart';
+import 'package:my_first_app/transaction/transaction_bloc.dart';
 
 import '../../../constants.dart';
 
@@ -55,11 +57,12 @@ class SingleImage extends StatelessWidget {
         width: size.width * 0.8,
         height: 185,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            image: DecorationImage(
-              fit: BoxFit.cover,
-              image: AssetImage(image),
-            )),
+          borderRadius: BorderRadius.circular(10),
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: AssetImage(image),
+          ),
+        ),
       ),
     );
   }

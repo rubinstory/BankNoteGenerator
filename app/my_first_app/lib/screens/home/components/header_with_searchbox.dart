@@ -17,16 +17,16 @@ class HeaderWithSearchBox extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Container(
         margin: EdgeInsets.only(bottom: defaultPadding * 2.5),
-        height: size.height * 0.2, // Cover 20% of total height
+        height: size.height * 0.275, // Cover 20% of total height
         child: Stack(
           children: <Widget>[
             Container(
                 padding: EdgeInsets.only(
                   left: defaultPadding,
                   right: defaultPadding,
-                  bottom: 36 + defaultPadding,
+                  bottom: defaultPadding,
                 ),
-                height: size.height * 0.2 - 27,
+                height: size.height * 0.25,
                 decoration: BoxDecoration(
                   color: myPrimaryColor,
                   borderRadius: BorderRadius.only(

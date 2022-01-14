@@ -9,18 +9,22 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BuildAppBar(),
+      backgroundColor: myPrimaryColor,
+      // appBar: BuildAppBar(),
       body: Body(),
-      bottomNavigationBar: MyBottomNavigationBar(),
+      // bottomNavigationBar: MyBottomNavigationBar(),
     );
   }
 
   AppBar BuildAppBar() {
     return AppBar(
-      elevation: 0,
-      backgroundColor: myPrimaryColor,
-      leading: IconButton(
-          onPressed: () {}, icon: SvgPicture.asset("assets/icons/menu.svg")),
-    );
+        title: Text("홈"),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        actions: [
+          IconButton(
+              onPressed: () {},
+              icon: SvgPicture.asset("assets/icons/menu.svg")),
+        ]);
   }
 }

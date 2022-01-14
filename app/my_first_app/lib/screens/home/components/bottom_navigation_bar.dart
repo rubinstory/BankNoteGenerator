@@ -5,7 +5,10 @@ import '../../../constants.dart';
 class MyBottomNavigationBar extends StatelessWidget {
   const MyBottomNavigationBar({
     Key? key,
+    required this.press,
   }) : super(key: key);
+
+  final VoidCallback press;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +25,7 @@ class MyBottomNavigationBar extends StatelessWidget {
           BoxShadow(
             offset: Offset(0, -10),
             blurRadius: 35,
-            color: myPrimaryColor.withOpacity(0.38),
+            color: myPrimaryColor.withOpacity(myShadowBlurOpacity),
           )
         ],
       ),
@@ -30,16 +33,32 @@ class MyBottomNavigationBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           IconButton(
-            onPressed: () {},
-            icon: SvgPicture.asset("assets/icons/flower.svg"),
+            onPressed: press,
+            icon: SvgPicture.asset(
+              "assets/icons/home.svg",
+              color: Colors.grey,
+            ),
           ),
           IconButton(
             onPressed: () {},
-            icon: SvgPicture.asset("assets/icons/heart-icon.svg"),
+            icon: SvgPicture.asset(
+              "assets/icons/chart.svg",
+              color: Colors.grey,
+            ),
           ),
           IconButton(
             onPressed: () {},
-            icon: SvgPicture.asset("assets/icons/user-icon.svg"),
+            icon: SvgPicture.asset(
+              "assets/icons/stock.svg",
+              color: Colors.grey,
+            ),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: SvgPicture.asset(
+              "assets/icons/user-icon.svg",
+              color: Colors.grey,
+            ),
           ),
         ],
       ),

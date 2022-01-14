@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_first_app/screens/details/detail_screen.dart';
+import 'package:my_first_app/screens/trading/detail_screen.dart';
 import 'package:my_first_app/transaction/transaction.dart';
 import 'package:my_first_app/transaction/transaction_bloc.dart';
 
@@ -18,7 +18,6 @@ class _TransactionImageHorizontalListState
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    transactionBloc.fetchAllTransaction();
     return SizedBox(
       height: size.height * 0.4,
       width: size.width,
@@ -50,95 +49,12 @@ class _TransactionImageHorizontalListState
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DetailScreen(),
+                  builder: (context) => TradingScreen(),
                 ),
               );
             },
           );
         });
-  }
-
-  // Widget _build(List<TranscationModel> transactionList) {
-  //   return SingleChildScrollView(
-  //     scrollDirection: Axis.horizontal,
-  //     child: Row(
-  //       children: [
-  //         ImageCard(
-  //           image: "assets/images/image_1.png",
-  //           title: "samantha",
-  //           country: "russia",
-  //           price: 442,
-  //           press: () {
-  //             Navigator.push(
-  //               context,
-  //               MaterialPageRoute(
-  //                 builder: (context) => DetailScreen(),
-  //               ),
-  //             );
-  //           },
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
-}
-
-class ImageCardHorizontalView extends StatelessWidget {
-  const ImageCardHorizontalView({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: [
-          ImageCard(
-            image: "assets/images/image_1.png",
-            title: "samantha",
-            country: "russia",
-            price: 442,
-            press: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => DetailScreen(),
-                ),
-              );
-            },
-          ),
-          ImageCard(
-            image: "assets/images/image_2.png",
-            title: "Angelica",
-            country: "AMERICA",
-            price: 442,
-            press: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => DetailScreen(),
-                ),
-              );
-            },
-          ),
-          ImageCard(
-            image: "assets/images/image_3.png",
-            title: "Something",
-            country: "russia",
-            price: 442,
-            press: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => DetailScreen(),
-                ),
-              );
-            },
-          ),
-        ],
-      ),
-    );
   }
 }
 
@@ -161,9 +77,11 @@ class ImageCard extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Container(
       margin: EdgeInsets.only(
-          left: defaultPadding,
-          top: defaultPadding / 2,
-          bottom: defaultPadding * 2.5),
+        left: defaultPadding,
+        top: defaultPadding / 2,
+        bottom: defaultPadding * 2.5,
+        right: defaultPadding,
+      ),
       width: size.width * 0.4,
       child: Column(
         children: <Widget>[
@@ -182,7 +100,7 @@ class ImageCard extends StatelessWidget {
                   BoxShadow(
                     offset: Offset(0, 10),
                     blurRadius: 50,
-                    color: myPrimaryColor.withOpacity(0.23),
+                    color: myPrimaryColor.withOpacity(myShadowBlurOpacity),
                   )
                 ],
               ),

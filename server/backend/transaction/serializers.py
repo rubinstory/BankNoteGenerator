@@ -11,6 +11,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class TransactionSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
     class Meta:
         model = Transaction
-        fields = ('id', 'ticker', 'price', 'user', 'user_name')
+        fields = ('id', 'ticker', 'price', 'user')

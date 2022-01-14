@@ -5,7 +5,8 @@ import 'package:my_first_app/transaction/transaction.dart';
 
 class TransactionAPIProvider {
   Client client = Client();
-  final String base_url = "http://127.0.0.1:8000/";
+  // final String base_url = "http://127.0.0.1:8000/";
+  final String base_url = "http://192.249.18.201:80/";
 
   get transactionListURL => base_url + "transaction";
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_first_app/constants.dart';
 import 'package:my_first_app/screens/home/home_screen.dart';
+import 'package:my_first_app/screens/main/tab_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -10,14 +11,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Plant App',
+      title: 'GOOFIE',
       theme: ThemeData(
         primaryColor: myPrimaryColor,
-        scaffoldBackgroundColor: myBackGroundColor,
         textTheme: Theme.of(context).textTheme.apply(bodyColor: myTextColor),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomeScreen(),
+      home: TabPage(),
     );
   }
 }

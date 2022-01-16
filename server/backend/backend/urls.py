@@ -15,9 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-import transaction.views
+from rest_framework import routers, viewsets
+from transaction.views import TransactionViewSet
+from asset_manage.views import AssetManageViewSet
+
+router = routers.DefaultRouter()
+router.register('transaction', TransactionViewSet)
+router.register('asset_manage', AssetManageViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('transaction.urls')),
+    path('', include(router.urls)),
 ]

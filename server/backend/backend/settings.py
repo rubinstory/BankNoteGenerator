@@ -39,9 +39,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'transaction',
+    'asset_manage',
     'django_filters',
+    'django_extensions',
 ]
 
+GRAPH_MODELS = {
+    'all_applications': True,
+    'group_models': True,
+
+}
 REST_FRAMEWORK = {
      'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 }

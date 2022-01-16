@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 const myShadowBlurOpacity = 0.15;
 const myPrimaryColor = Color(0xFFFFBA01);
+// const myPrimaryColor = Color(0xFFFADF5E);
 const myTextColor = Color(0xFF3C4046);
 const myBackGroundColor = Color(0xFFF9F8FD);
 
@@ -14,4 +15,6 @@ const lightred = Color(0xFFFF7F7F);
 const lightgrey = Color(0xFF939393);
 const lightlightgrey = Color(0xFFEEEEEE);
 const whitesmoke = Color(0xFFF5F5F5);
+const lightyellow = Color(0xFFFCEEA7);
+
 const double defaultPadding = 20.0;

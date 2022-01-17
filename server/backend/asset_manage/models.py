@@ -10,7 +10,12 @@ class AssetManage(models.Model):
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user')
     algorithm_type = models.CharField(max_length = 2, choices = ASSET_MANAGE_TYPE, null=True, blank=True)
+    automatic_investment_status = models.BooleanField(default=False)
     answer_to_question_1 = models.IntegerField()
     answer_to_question_2 = models.IntegerField()
     answer_to_question_3 = models.IntegerField()
+
+    @property
+    def user_id(self):
+        return self.user.id
 

@@ -7,22 +7,19 @@ import 'package:my_first_app/screens/home/components/square_card_horizontal_view
 import 'package:my_first_app/screens/home/components/title_with_only_text.dart';
 import 'package:my_first_app/screens/home/components/user_asset_status.dart';
 import 'package:my_first_app/screens/home/components/wide_text_card_horizontal_view.dart';
-import 'package:my_first_app/transaction/transaction_bloc.dart';
-
+import 'package:my_first_app/user/user_bloc.dart';
 import 'header_with_searchbox.dart';
-import 'image_card_horizontal_view.dart';
 import 'image_horizontal_without_text.dart';
 import 'title_with_text_button.dart';
 
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    transactionBloc.fetchAllTransaction();
     Size size = MediaQuery.of(context).size;
 
     return RefreshIndicator(
       onRefresh: () {
-        return transactionBloc.fetchAllTransaction();
+        return userBloc.fetchCurrentUser();
       },
       backgroundColor: myPrimaryColor,
       color: Colors.white,

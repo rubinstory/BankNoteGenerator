@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_first_app/transaction/transaction.dart';
-import 'package:my_first_app/transaction/transaction_bloc.dart';
 
 import '../../../constants.dart';
 

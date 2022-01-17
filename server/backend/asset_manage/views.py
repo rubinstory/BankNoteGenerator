@@ -78,7 +78,9 @@ class AssetManageViewSet(viewsets.ModelViewSet):
             body = {
                             'api_key':'Pf7HJ-5WRBgzt0eS1myGPC2DQc7WVrVqwXoLGX2R',
                             'api_secret': 'h0skte3bRU8qsoEUFkBUX4LBnNawMcJusbyKuNIC',
-                            'user_type': instance.algorithm_type
+                            'user_type': instance.algorithm_type,
+                            'user': instance.user,
+
                         }
             print(json.dumps(body))
             if instance.automatic_investment_status == True:

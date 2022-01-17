@@ -9,9 +9,10 @@ from rest_framework import filters
 class TransactionViewSet(viewsets.ModelViewSet):
     queryset = Transaction.objects.all()
     serializer_class = TransactionSerializer
-    filter_backends = [filters.SearchFilter , DjangoFilterBackend]
-    filterset_fields = ['user', 'ticker']
-    search_fields = ['user__username']
+    # filter_backends = [filters.SearchFilter , DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['user']
+    # search_fields = ['user__username']
 
 
 

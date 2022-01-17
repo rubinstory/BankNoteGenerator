@@ -3,13 +3,12 @@ from django.contrib.auth.models import User
 
 class Transaction(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    ticker = models.CharField(max_length=10)
-    price = models.IntegerField()
+    market = models.CharField(max_length=10, default="")
+    side = models.CharField(max_length=10, default="")
+    size = models.FloatField(default=0)
+    avgFillPrice = models.FloatField(default=0)
+    createdAt = models.CharField(max_length=100, default="")
 
     def __str__(self):
-        return f"{self.user.username} / {self.ticker} / {self.price}"
-
-    @property
-    def user_name(self):
-        return self.user.username
+        return f'{self.market}/{self.user.username}'
     

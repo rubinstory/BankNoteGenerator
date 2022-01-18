@@ -120,11 +120,11 @@ class _LineChartViewState extends State<LineChartView> {
           getTitles: (value) {
             switch (value.toInt()) {
               case 2:
-                return '2일전';
+                return '3월';
               case 5:
-                return '어제';
+                return '4월';
               case 8:
-                return '오늘';
+                return '5월';
             }
             return '';
           },
@@ -141,11 +141,11 @@ class _LineChartViewState extends State<LineChartView> {
           getTitles: (value) {
             switch (value.toInt()) {
               case 1:
-                return '60';
+                return '10k';
               case 3:
-                return '70';
+                return '30k';
               case 5:
-                return '80';
+                return '50k';
             }
             return '';
           },

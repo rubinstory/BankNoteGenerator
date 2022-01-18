@@ -1,7 +1,5 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:my_first_app/balance/balance_bloc.dart';
-import 'package:my_first_app/balance/balance_model.dart';
 import 'package:my_first_app/constants.dart';
 import 'package:my_first_app/screens/charts/color_extensionds.dart';
 
@@ -17,134 +15,141 @@ class PieChartSample1State extends State {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return StreamBuilder<BalanceResponseModel>(
-        stream: balanceBloc.balanceList,
-        builder: (context, snapshot) {
-          return Container(
-            width: size.width * 0.9,
-            child: AspectRatio(
-              aspectRatio: 1.0,
-              child: Container(
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      offset: Offset(0, 10),
-                      blurRadius: 50,
-                      color: myPrimaryColor.withOpacity(0.05),
-                    )
-                  ],
-                ),
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    side: BorderSide(
-                      color: myPrimaryColor.withOpacity(myShadowBlurOpacity),
-                      width: 1,
-                    ),
-                  ),
-                  child: Column(
-                    children: <Widget>[
-                      const SizedBox(
-                        height: 28,
-                      ),
-                      SizedBox(
-                        height: size.height * 0.05,
-                        width: size.width * 0.7,
-                        child: snapshot.hasData
-                            ? _build(snapshot.data!)
-                            : Text("Loading"),
-                      ),
-                      const SizedBox(
-                        height: 18,
-                      ),
-                      Expanded(
-                        child: snapshot.hasData
-                            ? AspectRatio(
-                                aspectRatio: 1,
-                                child: PieChart(
-                                  PieChartData(
-                                      pieTouchData: PieTouchData(touchCallback:
-                                          (FlTouchEvent event,
-                                              pieTouchResponse) {
-                                        setState(() {
-                                          if (!event
-                                                  .isInterestedForInteractions ||
-                                              pieTouchResponse == null ||
-                                              pieTouchResponse.touchedSection ==
-                                                  null) {
-                                            touchedIndex = -1;
-                                            return;
-                                          }
-                                          touchedIndex = pieTouchResponse
-                                              .touchedSection!
-                                              .touchedSectionIndex;
-                                        });
-                                      }),
-                                      startDegreeOffset: 180,
-                                      borderData: FlBorderData(
-                                        show: false,
-                                      ),
-                                      sectionsSpace: 1,
-                                      centerSpaceRadius: 0,
-                                      sections:
-                                          showingSections(snapshot.data!)),
-                                ),
-                              )
-                            : Text("LOADING"),
-                      ),
-                    ],
-                  ),
-                ),
+    return Container(
+      width: size.width * 0.9,
+      child: AspectRatio(
+        aspectRatio: 1.1,
+        child: Container(
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                offset: Offset(0, 10),
+                blurRadius: 50,
+                color: myPrimaryColor.withOpacity(0.05),
+              )
+            ],
+          ),
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+              side: BorderSide(
+                color: myPrimaryColor.withOpacity(myShadowBlurOpacity),
+                width: 1,
               ),
             ),
-          );
-        });
-  }
-
-  Widget _build(BalanceResponseModel model) {
-    List<BalanceModel> list = model.result;
-    return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: list.length,
-      itemBuilder: (BuildContext context, int index) {
-        return Container(
-          padding: EdgeInsets.all(defaultPadding / 5),
-          child: Indicator(
-            color: getColor(list[index].coin),
-            text: list[index].coin,
-            isSquare: false,
-            size: touchedIndex == index ? 18 : 16,
-            textColor: touchedIndex == index ? Colors.black : Colors.grey,
+            child: Column(
+              children: <Widget>[
+                const SizedBox(
+                  height: 28,
+                ),
+                // Row(
+                //   children: [
+                //     Container(
+                //       margin: EdgeInsets.only(
+                //         left: defaultPadding,
+                //         bottom: defaultPadding / 2,
+                //       ),
+                //       child: Text(
+                //         "보유 자산 항목",
+                //         style: TextStyle(
+                //           color: myPrimaryColor,
+                //           fontSize: 20,
+                //           fontWeight: FontWeight.bold,
+                //         ),
+                //       ),
+                //     ),
+                //   ],
+                // ),
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Indicator(
+                      color: const Color(0xff0293ee),
+                      text: 'BTC',
+                      isSquare: false,
+                      size: touchedIndex == 0 ? 18 : 16,
+                      textColor: touchedIndex == 0 ? Colors.black : Colors.grey,
+                    ),
+                    Indicator(
+                      color: const Color(0xfff8b250),
+                      text: 'ETC',
+                      isSquare: false,
+                      size: touchedIndex == 1 ? 18 : 16,
+                      textColor: touchedIndex == 1 ? Colors.black : Colors.grey,
+                    ),
+                    Indicator(
+                      color: const Color(0xff845bef),
+                      text: 'XRP',
+                      isSquare: false,
+                      size: touchedIndex == 2 ? 18 : 16,
+                      textColor: touchedIndex == 2 ? Colors.black : Colors.grey,
+                    ),
+                    Indicator(
+                      color: const Color(0xff13d38e),
+                      text: 'EMC2',
+                      isSquare: false,
+                      size: touchedIndex == 3 ? 18 : 16,
+                      textColor: touchedIndex == 3 ? Colors.black : Colors.grey,
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 18,
+                ),
+                Expanded(
+                  child: AspectRatio(
+                    aspectRatio: 1,
+                    child: PieChart(
+                      PieChartData(
+                          pieTouchData: PieTouchData(touchCallback:
+                              (FlTouchEvent event, pieTouchResponse) {
+                            setState(() {
+                              if (!event.isInterestedForInteractions ||
+                                  pieTouchResponse == null ||
+                                  pieTouchResponse.touchedSection == null) {
+                                touchedIndex = -1;
+                                return;
+                              }
+                              touchedIndex = pieTouchResponse
+                                  .touchedSection!.touchedSectionIndex;
+                            });
+                          }),
+                          startDegreeOffset: 180,
+                          borderData: FlBorderData(
+                            show: false,
+                          ),
+                          sectionsSpace: 1,
+                          centerSpaceRadius: 0,
+                          sections: showingSections()),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 
-  Color getColor(String ticker) {
-    switch (ticker) {
-      case "USD":
-        return Color(0xff0293ee);
-      case "XRP":
-        return Color(0xfff8b250);
-      case "USDT":
-        return Color(0xff845bef);
-    }
-    return Color(0xff13d38e);
-  }
-
-  List<PieChartSectionData> showingSections(BalanceResponseModel model) {
-    List<BalanceModel> list = model.result;
+  List<PieChartSectionData> showingSections() {
     return List.generate(
       4,
       (i) {
         final isTouched = i == touchedIndex;
         final opacity = isTouched ? 1.0 : 0.6;
+
+        const color0 = Color(0xff0293ee);
+        const color1 = Color(0xfff8b250);
+        const color2 = Color(0xff845bef);
+        const color3 = Color(0xff13d38e);
+
         switch (i) {
           case 0:
             return PieChartSectionData(
-              color: getColor(list[i].coin),
-              value: 10,
+              color: color0.withOpacity(opacity),
+              value: 25,
               title: '',
               radius: 80,
               titleStyle: const TextStyle(
@@ -153,57 +158,53 @@ class PieChartSample1State extends State {
                   color: Color(0xff044d7c)),
               titlePositionPercentageOffset: 0.55,
               borderSide: isTouched
-                  ? BorderSide(
-                      color: getColor(list[i].coin).darken(40), width: 6)
-                  : BorderSide(color: getColor(list[i].coin).withOpacity(0)),
+                  ? BorderSide(color: color0.darken(40), width: 6)
+                  : BorderSide(color: color0.withOpacity(0)),
             );
           case 1:
             return PieChartSectionData(
-              color: getColor(list[i].coin).withOpacity(opacity),
-              value: 8,
+              color: color1.withOpacity(opacity),
+              value: 25,
               title: '',
-              radius: 80,
+              radius: 65,
               titleStyle: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                   color: Color(0xff90672d)),
               titlePositionPercentageOffset: 0.55,
               borderSide: isTouched
-                  ? BorderSide(
-                      color: getColor(list[i].coin).darken(40), width: 6)
-                  : BorderSide(color: getColor(list[i].coin).withOpacity(0)),
+                  ? BorderSide(color: color1.darken(40), width: 6)
+                  : BorderSide(color: color2.withOpacity(0)),
             );
           case 2:
             return PieChartSectionData(
-              color: getColor(list[i].coin).withOpacity(opacity),
-              value: 6,
+              color: color2.withOpacity(opacity),
+              value: 25,
               title: '',
-              radius: 80,
+              radius: 60,
               titleStyle: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                   color: Color(0xff4c3788)),
               titlePositionPercentageOffset: 0.6,
               borderSide: isTouched
-                  ? BorderSide(
-                      color: getColor(list[i].coin).darken(40), width: 6)
-                  : BorderSide(color: getColor(list[i].coin).withOpacity(0)),
+                  ? BorderSide(color: color2.darken(40), width: 6)
+                  : BorderSide(color: color2.withOpacity(0)),
             );
           case 3:
             return PieChartSectionData(
-              color: getColor(list[i].coin).withOpacity(opacity),
-              value: 4,
+              color: color3.withOpacity(opacity),
+              value: 25,
               title: '',
-              radius: 80,
+              radius: 70,
               titleStyle: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                   color: Color(0xff0c7f55)),
               titlePositionPercentageOffset: 0.55,
               borderSide: isTouched
-                  ? BorderSide(
-                      color: getColor(list[i].coin).darken(40), width: 6)
-                  : BorderSide(color: getColor(list[i].coin).withOpacity(0)),
+                  ? BorderSide(color: color3.darken(40), width: 6)
+                  : BorderSide(color: color2.withOpacity(0)),
             );
           default:
             throw Error();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
 import 'package:my_first_app/api.dart';
 import 'package:my_first_app/asset_manage/asset_manage_bloc.dart';
 import 'package:my_first_app/constants.dart';
@@ -8,6 +9,8 @@ import 'package:my_first_app/transaction/transaction_bloc.dart';
 import 'package:my_first_app/transaction/transaction_model.dart';
 import 'package:my_first_app/user/user.dart';
 import 'package:my_first_app/user/user_bloc.dart';
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 class Body extends StatefulWidget {
   @override
@@ -124,6 +127,19 @@ class TransactionItem extends StatelessWidget {
   final String date, time, ticker, side;
   final double quantity, avgPrice;
 
+  List<String> convertTime(String date) {
+    DateTime converted = DateTime.parse(date);
+    tz.initializeTimeZones();
+
+    final location = tz.getLocation('Asia/Seoul');
+    final dateTime = tz.TZDateTime.from(converted, location);
+    return [
+      DateFormat('yyyy-MM-dd').format(dateTime),
+      DateFormat('HH:mm:ss').format(dateTime)
+    ];
+
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -138,7 +154,7 @@ class TransactionItem extends StatelessWidget {
               text: TextSpan(
                 children: [
                   TextSpan(
-                    text: "${date.split("T")[0]}\n",
+                    text: "${convertTime(date)[0]}\n",
                     style: TextStyle(
                       color: lightgrey,
                       fontSize: 12,
@@ -146,7 +162,7 @@ class TransactionItem extends StatelessWidget {
                     ),
                   ),
                   TextSpan(
-                    text: "${date.split("T")[1].split(".")[0]}\n\n",
+                    text: "${convertTime(date)[1]}\n\n",
                     style: TextStyle(
                       color: myTextColor,
                       fontSize: 20,

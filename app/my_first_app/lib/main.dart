@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         routes: {
           "/Home": (BuildContext context) => TabPage(),
           "/Survey": (BuildContext context) => SurveyScreen(),
-          "/SurveyFinished": (BuildContext context) => SurveyFinishedScreen(),
+          // "/SurveyFinished": (BuildContext context) => SurveyFinishedScreen(),
         });
   }
 }

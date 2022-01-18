@@ -9,6 +9,7 @@ const myTextColor = Color(0xFF3C4046);
 const myBackGroundColor = Color(0xFFF9F8FD);
 
 const positive = Color(0xFFAA0114);
+const negative = Color(0xFF78BE21);
 const onProgress = Color(0xFF03A062);
 const lightblue = Color(0xFFBADBFF);
 const lightred = Color(0xFFFF7F7F);
@@ -16,5 +17,9 @@ const lightgrey = Color(0xFF939393);
 const lightlightgrey = Color(0xFFEEEEEE);
 const whitesmoke = Color(0xFFF5F5F5);
 const lightyellow = Color(0xFFFCEEA7);
+
+const foxOrange = Color(0xFFF37021);
+const owlBrown = Color(0xFF3D302D);
+const turtleGreen = Color(0xFF265D07);
 
 const double defaultPadding = 20.0;

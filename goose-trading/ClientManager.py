@@ -4,20 +4,23 @@ from ftx import FtxClient
 from strategies.SqueezeBounce import SqueezeBounce
 
 class ClientManager:
-    sched = BackgroundScheduler(timezone="Asia/Seoul")
-    sched.start()
-
-    def __init__(self, api_key, api_secret, user_name, user_type) -> None:        
+    def __init__(self, user_name, user_type, api_key, api_secret) -> None:        
         self.client = FtxClient(api_key=api_key, api_secret=api_secret)
         self.user_name = user_name
         self.user_type = user_type
 
     def get_balance_with(self, fiat):
-        for balance in self.client.get_balances():
-            if balance["coin"] == fiat:
-                return balance["availableWithoutBorrow"]
-        return 0
-
+        try:
+            for balance in self.client.get_balances():
+                if balance["coin"] == fiat:
+                    return balance["availableWithoutBorrow"]
+            return 0
+        except:    
+            for balance in self.client.get_subaccounts_balance():
+                if balance["coin"] == fiat:
+                    return balance["availableWithoutBorrow"]
+            return 0
+    
     def check_balance(self, amount):
         return self.get_balance_with("USD") >= amount
 
@@ -83,13 +86,3 @@ class ClientManager:
         elif self.user_type == "D": #신중한 거북이(X-1) 
             self.client.set_leverage(1)
 
-    def run(self):              
-        if self.check_balance(10):
-            self.set_leverage()
-            s = SqueezeBounce(self.client ,self.get_symbols())
-            ClientManager.sched.add_job(s.start, 'cron', hour='0-23', minute='*/5')
-        
-        else:
-            print("잔고 부족!!")
-            return False
-            

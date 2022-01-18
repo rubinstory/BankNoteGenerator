@@ -17,8 +17,6 @@ class SqueezeBounce:
         self.awaiting_long = False
         self.awaiting_short = False
     
-    def start(self):
-        self.update()
 
     def get_historical_dataframe(self, ticker, interval, limit):
         # get data from binance api
@@ -182,6 +180,7 @@ class SqueezeBounce:
         }
     
     def update(self):
+        print("===")
         try:
             # Awaiting for updating
             time.sleep(3)

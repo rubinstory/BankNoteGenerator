@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_first_app/screens/cardnews/card_news.dart';
 
 import '../../../constants.dart';
 
@@ -13,12 +14,13 @@ class WideTextCardHorizontalView extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
-        children: <Widget>[
+        children: const <Widget>[
           WideTextCardWithImage(
             color: myPrimaryColor,
             title: "매년 세액 공제 받으며\n구스와 노후 준비하기\n\n",
             keyword: "연금저축",
             image: "assets/images/umbrella.png",
+
           ),
           WideTextCardWithImage(
             color: lightblue,
@@ -51,57 +53,67 @@ class WideTextCardWithImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Container(
-      margin: EdgeInsets.only(
-        left: defaultPadding,
-        top: defaultPadding / 2,
-        bottom: defaultPadding / 2,
-        right: defaultPadding,
-      ),
-      width: size.width * 0.9,
-      height: 185,
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Row(
-        children: [
-          Container(
-            padding: EdgeInsets.only(
-              left: defaultPadding,
-              top: 0,
-            ),
-            child: RichText(
-              text: TextSpan(children: [
-                TextSpan(
-                  text: "$title",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                TextSpan(
-                  text: "$keyword",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                  ),
-                ),
-              ]),
-            ),
+    return InkWell(
+      onTap: () {
+        Navigator.push<void>(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CardNews(),
           ),
-          Spacer(),
-          Container(
-            padding: EdgeInsets.only(right: defaultPadding),
-            child: Image.asset(
-              "$image",
-              width: 100,
-              height: 100,
+        );
+      },
+      child: Container(
+        margin: const EdgeInsets.only(
+          left: defaultPadding,
+          top: defaultPadding / 2,
+          bottom: defaultPadding / 2,
+          right: defaultPadding,
+        ),
+        width: size.width * 0.9,
+        height: 185,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Row(
+          children: [
+            Container(
+              padding: EdgeInsets.only(
+                left: defaultPadding,
+                top: 0,
+              ),
+              child: RichText(
+                text: TextSpan(children: [
+                  TextSpan(
+                    text: "$title",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  TextSpan(
+                    text: "$keyword",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                    ),
+                  ),
+                ]),
+              ),
             ),
-          ),
-        ],
-      ),
+            Spacer(),
+            Container(
+              padding: EdgeInsets.only(right: defaultPadding),
+              child: Image.asset(
+                "$image",
+                width: 100,
+                height: 100,
+              ),
+            ),
+          ],
+        ),
+      )
     );
   }
 }

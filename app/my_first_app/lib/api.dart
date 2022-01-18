@@ -1,5 +1,4 @@
 import 'package:my_first_app/asset_manage/asset_manage.dart';
-import 'package:my_first_app/balance/balance_model.dart';
 import 'package:my_first_app/transaction/transaction_model.dart';
 import 'package:my_first_app/user/user.dart';
 import 'package:retrofit/retrofit.dart';

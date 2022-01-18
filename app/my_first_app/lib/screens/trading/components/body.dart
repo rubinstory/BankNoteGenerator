@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:my_first_app/api.dart';
 import 'package:my_first_app/asset_manage/asset_manage.dart';
 import 'package:my_first_app/asset_manage/asset_manage_bloc.dart';
-import 'package:my_first_app/balance/balance_bloc.dart';
 import 'package:my_first_app/constants.dart';
 import 'package:my_first_app/screens/charts/pie_chart.dart';
 import 'package:my_first_app/screens/home/components/title_with_only_text.dart';
@@ -19,16 +18,20 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   @override
+  void initState() {
+    super.initState();
+    assetManageBloc.fetchAssetManageItem(CURRENT_USER_ID);
+  }
+
+  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    assetManageBloc.fetchAssetManageItem(CURRENT_USER_ID);
-    balanceBloc.fetchBalances();
+    // assetManageBloc.fetchAssetManageItem(CURRENT_USER_ID);
     return StreamBuilder<AssetManageModel>(
         stream: assetManageBloc.currentUserAssetManageItem,
         builder: (context, snapshot) {
           return RefreshIndicator(
             onRefresh: () {
-              balanceBloc.fetchBalances();
               return assetManageBloc.fetchAssetManageItem(CURRENT_USER_ID);
             },
             backgroundColor: myPrimaryColor,

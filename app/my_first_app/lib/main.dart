@@ -6,9 +6,18 @@ import 'package:my_first_app/screens/login/login_screen.dart';
 import 'package:my_first_app/screens/main/tab_page.dart';
 import 'package:my_first_app/screens/survey/survey_finished_screen.dart';
 import 'package:my_first_app/screens/survey/survey_screen.dart';
+import 'package:logging/logging.dart';
 
 void main() {
+  _setupLogging();
   runApp(const MyApp());
+}
+
+void _setupLogging() {
+  Logger.root.level = Level.ALL;
+  Logger.root.onRecord.listen((rec) {
+    print('${rec.level.name}: ${rec.time}: ${rec.message}');
+  });
 }
 
 class MyApp extends StatelessWidget {

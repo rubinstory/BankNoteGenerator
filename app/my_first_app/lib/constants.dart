@@ -21,6 +21,6 @@ const lightyellow = Color(0xFFFCEEA7);
 const foxOrange = Color(0xFFF37021);
 const owlBrown = Color(0xFF3D302D);
 const turtleGreen = Color(0xFF265D07);
-const turtleGreen2 = Color(0xFF265D07);
+const blue = Color(0xFF2A52BE);
 
 const double defaultPadding = 20.0;

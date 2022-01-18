@@ -4372,3 +4372,12 @@ Watching for file changes with StatReloader
 [18/Jan/2022 05:26:13] "GET /asset_manage/1/ HTTP/1.1" 200 148
 [18/Jan/2022 05:26:39] "GET /user/1 HTTP/1.1" 301 0
 [18/Jan/2022 05:26:39] "GET /user/1/ HTTP/1.1" 200 352
+/root/camp3/server/backend/transaction/views.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+January 18, 2022 - 04:36:40
+Django version 4.0.1, using settings 'backend.settings'
+Starting development server at http://0.0.0.0:80/
+Quit the server with CONTROL-C.
+Watching for file changes with StatReloader

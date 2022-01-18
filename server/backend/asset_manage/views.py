@@ -63,6 +63,7 @@ class AssetManageViewSet(viewsets.ModelViewSet):
         if len(AssetManage.objects.filter(user=int(request.data.get('user')))) > 0:
             instance = AssetManage.objects.get(user=int(request.data.get('user')))
 
+            before = instance.automatic_investment_status
             try:
                 instance.automatic_investment_status = bool(request.data.get('automatic_investment_status'))
             except:
@@ -76,21 +77,20 @@ class AssetManageViewSet(viewsets.ModelViewSet):
 
             url = "http://49.247.36.104/"
             body = {
-                            'api_key':'Pf7HJ-5WRBgzt0eS1myGPC2DQc7WVrVqwXoLGX2R',
-                            'api_secret': 'h0skte3bRU8qsoEUFkBUX4LBnNawMcJusbyKuNIC',
-                            'user_type': instance.algorithm_type,
-                            'user': instance.user,
+                    'api_key':'Pf7HJ-5WRBgzt0eS1myGPC2DQc7WVrVqwXoLGX2R',
+                    'api_secret': 'h0skte3bRU8qsoEUFkBUX4LBnNawMcJusbyKuNIC',
+                    'user_type': instance.algorithm_type,
+                    'user': instance.user.id,}
 
-                        }
-            print(json.dumps(body))
-            if instance.automatic_investment_status == True:
-                url += "start"
-                response = requests.post(url, json=body)
-                print(response)
-            else:
-                url += "stop"
-                response = requests.post(url,json=body)
-                print(response)
+            if before != instance.automatic_investment_status:
+                if instance.automatic_investment_status == True:
+                    url += "start"
+                    response = requests.post(url, json=body)
+                    print(response)
+                else:
+                    url += "stop"
+                    response = requests.post(url,json=body)
+                    print(response)
 
             instance = AssetManageSerializer(instance).data
             return Response(instance)

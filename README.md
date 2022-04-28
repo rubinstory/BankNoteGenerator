@@ -4,7 +4,7 @@
 ## Great Observing and Ordering System via Exchange
 
 ## Period
-2021.01.12 ~ 2022.01.18
+2022.01.12 ~ 2022.01.18
 
 ## Contributors
 
